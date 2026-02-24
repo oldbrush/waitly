@@ -8,6 +8,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export async function getNotionDatabaseRowCount(databaseId: string) {
+  if (!databaseId) {
+    console.warn("NOTION_DB_ID is not set. Returning 0 for waitlist count.");
+    return 0;
+  }
+
   try {
     let allResults: unknown[] = [];
     let hasMore = true;
